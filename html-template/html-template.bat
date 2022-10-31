@@ -1,7 +1,7 @@
 @echo off
 
 :: HTML Template
-echo	^<!DOCTPPE html^> > ./index.html
+echo	^<!DOCTYPE html^> > ./index.html
 echo	^<html^> >> ./index.html
 echo		^<head^> >> ./index.html
 echo			^<meta charset="UTF-8"^> >> ./index.html
