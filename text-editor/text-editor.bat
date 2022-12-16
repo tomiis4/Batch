@@ -3,38 +3,28 @@
 echo ^| Text Edit ^| Filename: %1 ^|
 echo.
 
-:get_input
-set /p line=
 
-:: commands
-if "%line%" == ":q" goto exit
-if "%line%" == ":w" goto save 
-if "%line%" == ":wq" goto exit_save
-if "%line%" == ":cls" goto clear_screen
+:: variables & config
+setlocal enabledelayedexpansion
+set buffer=()
+set lineLength=0
 
-echo %line%>>save.txt
+:: functions
 
+:get_line
+	set /p line=
+	
+	:: commands
+	:: if "%line%" == ":q" goto exit
+	if "%line%" == ":w" goto save_file
+	
+	set buffer[!lineLength!]=%line%
+	set /a lineLength=lineLength+1
+goto get_line
 
-goto get_input
-
-:: command functions
-
-:: copy save file and put it in main file
-:save 
-copy save.txt "%~1"
-del save.txt
-goto get_input
-
-:: clear screen
-:clear_screen
-cls
-goto get_input
-
-:: exit editor
-:exit
-exit
-
-:: exit and save
-copy save.txt "%~1"
-del save.txt
-exit
+:save_file
+(
+	for /L %%i in (0,1,%lineLength%-1) do (
+		echo !buffer[%%i]!
+	)
+) > %1 
