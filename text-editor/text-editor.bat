@@ -3,28 +3,24 @@
 echo ^| Text Edit ^| Filename: %1 ^|
 echo.
 
-
-:: variables & config
+chcp 65001
 setlocal enabledelayedexpansion
-set buffer=()
-set lineLength=0
 
-:: functions
+set lineLen=0
 
 :get_line
 	set /p line=
 	
-	:: commands
-	:: if "%line%" == ":q" goto exit
-	if "%line%" == ":w" goto save_file
+	if "%line%" == ":w" goto save
 	
-	set buffer[!lineLength!]=%line%
-	set /a lineLength=lineLength+1
+	set /a i=!i!+1
+	set buffer[!i!]=%line%
+	set line=
 goto get_line
 
-:save_file
-(
-	for /L %%i in (0,1,%lineLength%-1) do (
-		echo !buffer[%%i]!
+:save
+	echo.>index.txt
+	for /L %%i in (1,1,%i%) do (
+		echo !buffer[%%i]!>>%1
 	)
-) > %1 
+exit
