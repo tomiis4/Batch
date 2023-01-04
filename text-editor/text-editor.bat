@@ -19,7 +19,7 @@ set lineLen=0
 goto get_line
 
 :save
-	echo.>index.txt
+	echo.>%1
 	for /L %%i in (1,1,%i%) do (
 		echo !buffer[%%i]!>>%1
 	)
