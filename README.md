@@ -4,7 +4,7 @@
 ## Input/Output
 ### Input
 ```bat
-$1
+%1
 :: file.bat argument-1
 ```
 ### Output
