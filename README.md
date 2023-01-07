@@ -1,5 +1,6 @@
 # Batch  Cheatsheet
 
+`t-help`
 
 ## Input/Output
 ### Input
