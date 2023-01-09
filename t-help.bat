@@ -3,6 +3,8 @@
 cls
 
 echo Programming
+	echo		start terminal and nvim
+	echo			code-start Folder	
 	echo  	html template
 	echo			html-template
 	echo		compile C
@@ -22,4 +24,4 @@ echo Files
 	echo		view file content
 	echo			view file.txt	
 	echo		copy content file
-	echo			context file.txt
+	echo			getContext file.txt
